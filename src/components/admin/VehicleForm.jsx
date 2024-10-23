@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { vehicleService } from "../services/vehicleServices";
+import { vehicleService } from "../../services/vehicleService";
 import { TextField, Button, Checkbox, FormControlLabel, Box, Typography } from "@mui/material";
 
 export default function VehicleForm() {
