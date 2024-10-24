@@ -1,10 +1,9 @@
-import React from "react";
-import VehicleForm from "./VehicleForm";
+import React from 'react'
 
 export default function VehicleManagement() {
   return (
     <div>
-      <VehicleForm />
+      
     </div>
-  );
+  )
 }

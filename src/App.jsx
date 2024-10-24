@@ -1,5 +1,3 @@
-import CssBaseline from "@mui/material/CssBaseline";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -11,21 +9,9 @@ import HomePage from "./components/user/HomePage";
 import TourBooking from "./components/user/TourBooking";
 import TourList from "./components/user/TourList";
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#1976d2",
-    },
-    secondary: {
-      main: "#dc004e",
-    },
-  },
-});
-
 export default function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
+    <div>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -39,6 +25,6 @@ export default function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-    </ThemeProvider>
+    </div>
   );
 }
