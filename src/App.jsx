@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Dashboard from "./components/admin/Dashboard";
+import OrderManagement from "./components/admin/OrderManagement";
 import RouteManagement from "./components/admin/RouteManagement";
 import TourManagement from "./components/admin/TourManagement";
 import VehicleManagement from "./components/admin/VehicleManagement";
@@ -17,6 +18,8 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="tours" element={<TourList />} />
           <Route path="book/:tourId" element={<TourBooking />} />
+          <Route path="order" element={<OrderManagement />} />
+
           <Route path="admin" element={<Dashboard />}>
             {/* Nested Routes inside Admin */}
             <Route path="vehicles" element={<VehicleManagement />} />
