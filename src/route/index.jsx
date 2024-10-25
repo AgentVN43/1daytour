@@ -10,6 +10,7 @@ import TourManagement from '../components/admin/TourManagement'
 
 import HomePage from '../pages/HomePage';
 import TourPage from '../pages/TourPage';
+import OrderManagement from '../components/admin/OrderManagement';
 
 export default function MainRouter() {
     return (
@@ -20,6 +21,7 @@ export default function MainRouter() {
                     <Route path="/tour" element={<TourPage />} />
                     <Route path="book/:tourId" element={<TourBooking />} />
                     <Route path="admin" element={<Dashboard />}>
+                        <Route path="order" element={<OrderManagement/>} />
                         {/* Nested Routes inside Admin */}
                         <Route path="vehicles" element={<VehicleManagement />} />
                         <Route path="routes" element={<RouteManagement />} />
