@@ -6,7 +6,7 @@ export default function VehicleOption({ name }) {
     const navigate = useNavigate()
     return (
         /* From Uiverse.io by SteveBloX */
-        <div onClick={() => navigate('/tour')} class="card">
+        <div onClick={() => navigate('/tour')} className="card">
             {name}
         </div>
 
