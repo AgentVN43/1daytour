@@ -1,14 +1,54 @@
-"use client"; // Make sure this is a client component
-
 import React from 'react';
 import { Form, Input, Button, DatePicker, Select, message } from 'antd';
 const { Option } = Select;
 
-const TransactionForm = ({ provinces }) => {
+const TransactionForm = ({ provinces, infoTraveler, setInfoTraveler }) => {
     const { RangePicker } = DatePicker;
+    const getProvinceCode = (name) => {
+        const province = provinces.find((p) => p.name === name);
+        return province ? province.code : "";
+    };
+
+    const generateTourId = (
+        departure,
+        destination,
+        date,
+        vehicleType
+    ) => {
+        const depCode = getProvinceCode(departure);
+        const destCode = getProvinceCode(destination);
+        const formattedDate = date[0].format("DDMMYY");
+
+        const timestamp = Date.now().toString().slice(-5);
+        const randomNum = Math.floor(100 + Math.random() * 900);
+        const uniqueOrder = `${timestamp}${randomNum}`;
+
+        return `${depCode}${destCode}-${uniqueOrder}-${formattedDate}${vehicleType}`;
+    };
+
+
     const onFinish = (values) => {
-        message.success('Cập nhật giao dịch thành công!');
+
         console.log('Received values:', values);
+        const generatedId = generateTourId(
+            values.departure,
+            values.destination,
+            values.date,
+            localStorage.getItem('selectedOption')
+        );
+        setInfoTraveler({
+            ...infoTraveler,
+            tourId: generatedId,
+            customerName: values.customerName,
+            departure: values.departure,
+            destination: values.destination,
+            departureDate: values.date ? values.date[0].format("YYYY-MM-DD") : "",
+            returnDate: values.date ? values.date[1].format("YYYY-MM-DD") : "",
+            passengers: values.passengers,
+            vehicleType: localStorage.getItem('selectedOption') || "",
+            specialRequirements: values.specialRequirements || ""
+        })
+        message.success('Cập nhật giao dịch thành công!');
     };
 
     const onFinishFailed = (errorInfo) => {
@@ -16,8 +56,8 @@ const TransactionForm = ({ provinces }) => {
     };
 
     return (
-        <div className="max-w-xl mx-auto p-5 bg-white shadow-md rounded-lg mt-5">
-            <h2 className="text-3xl font-bold mb-6 text-start">Nhập thông tin tour</h2>
+        <div className="max-w-xl mx-auto p-5 bg-white shadow-md rounded-lg my-5">
+            <h2 className="text-3xl font-bold mb-6 text-start">Nhập thông tin khách hàng</h2>
             <Form
                 name="transactionForm"
                 onFinish={onFinish}
@@ -39,7 +79,7 @@ const TransactionForm = ({ provinces }) => {
                     >
                         <Select placeholder="Chọn điểm khởi hành" className="w-full">
                             {provinces.map((item) => (
-                                <Option key={item.code} value={item.code}>{item.name}</Option>
+                                <Option key={item.code} value={item.name}>{item.name}</Option>
                             ))}
                         </Select>
                     </Form.Item>
@@ -50,7 +90,7 @@ const TransactionForm = ({ provinces }) => {
                     >
                         <Select placeholder="Chọn đích đến" className="w-full">
                             {provinces.map((item) => (
-                                <Option key={item.code} value={item.code}>{item.name}</Option>
+                                <Option key={item.code} value={item.name}>{item.name}</Option>
                             ))}
                         </Select>
                     </Form.Item>
@@ -64,11 +104,11 @@ const TransactionForm = ({ provinces }) => {
                     <RangePicker placeholder={['Nhập ngày bắt đầu', 'Nhập ngày kết thúc']} className="w-full" />
                 </Form.Item>
                 <div>
-                    <p>Sô lượng hành khách</p>
+                    <p className='text-start'>Sô lượng hành khách</p>
                     <div className='grid grid-cols-3 gap-5'>
                         <Form.Item
                             label="Người lớn"
-                            name="adults"
+                            name={["passengers", "adults"]}
                             rules={[
                                 {
                                     required: true,
@@ -89,7 +129,7 @@ const TransactionForm = ({ provinces }) => {
                         </Form.Item>
                         <Form.Item
                             label="Trẻ em (dưới 12 tuổi)"
-                            name="childrenUnder2"
+                            name={["passengers", "childrenUnder12"]}
                             rules={[
                                 {
                                     required: true,
@@ -110,7 +150,7 @@ const TransactionForm = ({ provinces }) => {
                         </Form.Item>
                         <Form.Item
                             label="Trẻ em (dưới 2 tuổi)"
-                            name="childrenUnder12"
+                            name={["passengers", "childrenUnder2"]}
                             rules={[
                                 {
                                     required: true,

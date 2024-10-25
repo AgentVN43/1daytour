@@ -27,7 +27,7 @@ export default function HomePage() {
         {
           vehicleType.map((item) => (
             <div key={item._id}>
-              <VehicleOption name={item.type} />
+              <VehicleOption item={item} />
             </div>
           ))
         }

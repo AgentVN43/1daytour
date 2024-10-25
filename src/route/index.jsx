@@ -20,8 +20,8 @@ export default function MainRouter() {
                     <Route path="/" element={<HomePage />} />
                     <Route path="/tour" element={<TourPage />} />
                     <Route path="book/:tourId" element={<TourBooking />} />
+                    <Route path="order" element={<OrderManagement />} />
                     <Route path="admin" element={<Dashboard />}>
-                        <Route path="order" element={<OrderManagement/>} />
                         {/* Nested Routes inside Admin */}
                         <Route path="vehicles" element={<VehicleManagement />} />
                         <Route path="routes" element={<RouteManagement />} />
