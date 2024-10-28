@@ -6,6 +6,7 @@ import { provincesService } from '../services/provincesService'
 import BreadcrumbC from '../components/Breadcrumb';
 import FoodInfo from '../components/foodInfo';
 import TourSchedule from '../components/tourSchedule';
+import VehicleInfo from '../components/vehicleInfo';
 
 export default function TourPage() {
   const [provinces, setProvinces] = useState([])
@@ -56,8 +57,13 @@ export default function TourPage() {
         <FormInfo provinces={provinces} infoTraveler={infoTraveler} setInfoTraveler={setInfoTraveler} />
     },
     {
+      title: 'Thông tin phương tiện',
+      content: <VehicleInfo infoTraveler={infoTraveler} setInfoTraveler={setInfoTraveler} />,
+       
+    },
+    {
       title: 'Thông tin bữa ăn',
-      content: <FoodInfo infoTraveler={infoTraveler} />,
+      content: <FoodInfo infoTraveler={infoTraveler} setInfoTraveler={setInfoTraveler} />,
     },
     {
       title: 'Lịch trình tham quan',

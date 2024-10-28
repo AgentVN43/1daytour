@@ -26,6 +26,8 @@ const TransactionForm = ({ provinces, infoTraveler, setInfoTraveler }) => {
         return `${depCode}${destCode}-${uniqueOrder}-${formattedDate}${vehicleType}`;
     };
 
+    const selectedOption = JSON.parse(localStorage.getItem('selectedOption')) || {};
+
 
     const onFinish = (values) => {
 
@@ -34,7 +36,7 @@ const TransactionForm = ({ provinces, infoTraveler, setInfoTraveler }) => {
             values.departure,
             values.destination,
             values.date,
-            localStorage.getItem('selectedOption')
+            selectedOption.code
         );
         setInfoTraveler({
             ...infoTraveler,
@@ -45,7 +47,7 @@ const TransactionForm = ({ provinces, infoTraveler, setInfoTraveler }) => {
             departureDate: values.date ? values.date[0].format("YYYY-MM-DD") : "",
             returnDate: values.date ? values.date[1].format("YYYY-MM-DD") : "",
             passengers: values.passengers,
-            vehicleType: localStorage.getItem('selectedOption') || "",
+            vehicleType: selectedOption.id,
             specialRequirements: values.specialRequirements || ""
         })
         message.success('Cập nhật giao dịch thành công!');
@@ -107,7 +109,7 @@ const TransactionForm = ({ provinces, infoTraveler, setInfoTraveler }) => {
                     <p className='text-start'>Sô lượng hành khách</p>
                     <div className='grid grid-cols-3 gap-5'>
                         <Form.Item
-                            label="Người lớn"
+                            label="Người lớn (12 tuổi trở lên)"
                             name={["passengers", "adults"]}
                             rules={[
                                 {
@@ -149,7 +151,7 @@ const TransactionForm = ({ provinces, infoTraveler, setInfoTraveler }) => {
                             <Input placeholder='Nhập số lượng' type="number" step="1" className="w-full" />
                         </Form.Item>
                         <Form.Item
-                            label="Trẻ em (dưới 2 tuổi)"
+                            label="Trẻ nhỏ (dưới 5 tuổi)"
                             name={["passengers", "childrenUnder2"]}
                             rules={[
                                 {
