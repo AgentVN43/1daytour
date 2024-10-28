@@ -17,7 +17,6 @@ import FormCustom from "./formCustom";
 const { Title, Text } = Typography;
 const { TabPane } = Tabs;
 export default function FoodInfo({ infoTraveler, setInfoTraveler }) {
-  const [meals, setMeals] = useState([]);
   const [nights, setNights] = useState(0);
   const [days, setDays] = useState("");
   const [data, setData] = useState([]);

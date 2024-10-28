@@ -22,7 +22,7 @@ export default function FormStandar({
     return count;
   };
 
-  const columnst = [
+  const columns = [
     {
       title: "Check-in Date",
       dataIndex: "checkin",
@@ -55,7 +55,7 @@ export default function FormStandar({
     },
   ];
 
-  const datast = [
+  const data = [
     {
       key: "1",
       nights: nights,
@@ -71,8 +71,8 @@ export default function FormStandar({
   return (
     <>
       <Table
-        dataSource={datast}
-        columns={columnst}
+        dataSource={data}
+        columns={columns}
         pagination={false}
         rowKey="key"
         style={{ marginBottom: 16 }}
