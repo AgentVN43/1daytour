@@ -12,7 +12,7 @@ import React, { useState } from "react";
 const { Title, Text } = Typography;
 const { Option } = Select;
 
-const FormCustom = () => {
+const FormCustom = ({ infoTraveler, setInfoTraveler }) => {
   const [form] = Form.useForm();
   const [result, setResult] = useState(null);
 
@@ -221,17 +221,33 @@ const FormCustom = () => {
     setResult(result);
   };
 
+  // const handleConfirm = () => {
+  //   if (result && !result.error) {
+  //     console.log("Hotel Room Distribution:", {
+  //       totalGuests: result.totalGuests,
+  //       totalRooms: result.totalRooms,
+  //       totalCapacity: result.totalCapacity,
+  //       utilization:
+  //         ((result.totalGuests / result.totalCapacity) * 100).toFixed(1) + "%",
+  //       distribution: result.distribution,
+  //     });
+  //   }
+  // };
+
   const handleConfirm = () => {
-    if (result && !result.error) {
-      console.log("Hotel Room Distribution:", {
-        totalGuests: result.totalGuests,
-        totalRooms: result.totalRooms,
-        totalCapacity: result.totalCapacity,
-        utilization:
-          ((result.totalGuests / result.totalCapacity) * 100).toFixed(1) + "%",
-        distribution: result.distribution,
-      });
-    }
+    const hotelData = {
+      totalGuests: result.totalGuests,
+      totalRooms: result.totalRooms,
+      totalCapacity: result.totalCapacity,
+      utilization:
+        ((result.totalGuests / result.totalCapacity) * 100).toFixed(1) + "%",
+      distribution: result.distribution,
+    };
+
+    setInfoTraveler((prevInfo) => ({
+      ...prevInfo,
+      hotels: [...(prevInfo.hotels || []), hotelData], // Add hotelData to hotels array
+    }));
   };
 
   const columns = [

@@ -8,6 +8,7 @@ import FoodInfo from '../components/foodInfo';
 import TourSchedule from '../components/tourSchedule';
 import VehicleInfo from '../components/vehicleInfo';
 import MealsInfo from '../components/mealsInfo';
+import ServicesInfo from '../components/servicesInfo';
 
 export default function TourPage() {
   const [provinces, setProvinces] = useState([])
@@ -69,6 +70,10 @@ export default function TourPage() {
     {
       title: 'Thông tin bữa ăn',
       content: <MealsInfo infoTraveler={infoTraveler} setInfoTraveler={setInfoTraveler} />,
+    },
+    {
+      title: 'Thông tin dịch vụ',
+      content: <ServicesInfo infoTraveler={infoTraveler} setInfoTraveler={setInfoTraveler} />,
     },
     {
       title: 'Lịch trình tham quan',

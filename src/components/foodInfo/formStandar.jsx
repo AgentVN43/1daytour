@@ -1,7 +1,4 @@
-import {
-    Table,
-    Typography
-} from "antd";
+import { Button, Table, Typography } from "antd";
 import React, { useEffect, useState } from "react";
 
 export default function FormStandar({
@@ -12,7 +9,7 @@ export default function FormStandar({
   infoTraveler,
   setInfoTraveler,
 }) {
-  const [roomType, setRoomType] = useState("2 people/room"); // Default to 2 people/room
+  const [roomType, setRoomType] = useState("2 people/room");
   const [roomCount, setRoomCount] = useState(0);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -68,6 +65,22 @@ export default function FormStandar({
     calculateRoomCount();
   }, [calculateRoomCount, nights, roomType]);
 
+  const handleConfirm = () => {
+    const hotelData = {
+      nights,
+      roomType,
+      roomCount,
+      checkin: departureDate,
+      checkout: returnDate,
+      totalPassengers,
+    };
+
+    setInfoTraveler((prevInfo) => ({
+      ...prevInfo,
+      hotels: [...(prevInfo.hotels || []), hotelData], // Add hotelData to hotels array
+    }));
+  };
+
   return (
     <>
       <Table
@@ -77,6 +90,9 @@ export default function FormStandar({
         rowKey="key"
         style={{ marginBottom: 16 }}
       />
+      <Button type="primary" onClick={handleConfirm}>
+        Confirm
+      </Button>
     </>
   );
 }
