@@ -30,8 +30,7 @@ const TransactionForm = ({ provinces, infoTraveler, setInfoTraveler }) => {
 
 
     const onFinish = (values) => {
-
-        console.log('Received values:', values);
+        console.log("🚀 ~ onFinish ~ values:", values)
         const generatedId = generateTourId(
             values.departure,
             values.destination,
@@ -58,7 +57,7 @@ const TransactionForm = ({ provinces, infoTraveler, setInfoTraveler }) => {
     };
 
     return (
-        <div className="max-w-xl mx-auto p-5 bg-white shadow-md rounded-lg my-5">
+        <div className="max-w-2xl mx-auto p-5 bg-white shadow-md rounded-lg my-5">
             <h2 className="text-3xl font-bold mb-6 text-start">Nhập thông tin khách hàng</h2>
             <Form
                 name="transactionForm"

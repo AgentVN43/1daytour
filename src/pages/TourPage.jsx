@@ -4,7 +4,7 @@ import FormInfo from '../components/formInfo'
 
 import { provincesService } from '../services/provincesService'
 import BreadcrumbC from '../components/Breadcrumb';
-import FoodInfo from '../components/foodInfo';
+import HotelInfo from '../components/hotelInfo';
 import TourSchedule from '../components/tourSchedule';
 import VehicleInfo from '../components/vehicleInfo';
 import MealsInfo from '../components/mealsInfo';
@@ -61,11 +61,10 @@ export default function TourPage() {
     {
       title: 'Thông tin phương tiện',
       content: <VehicleInfo infoTraveler={infoTraveler} setInfoTraveler={setInfoTraveler} />,
-       
     },
     {
-      title: 'Thông tin lưu trứu',
-      content: <FoodInfo infoTraveler={infoTraveler} setInfoTraveler={setInfoTraveler} />,
+      title: 'Thông tin lưu trú',
+      content: <HotelInfo infoTraveler={infoTraveler} setInfoTraveler={setInfoTraveler} />,
     },
     {
       title: 'Thông tin bữa ăn',
@@ -114,6 +113,16 @@ export default function TourPage() {
         <div
           className='my-5'
         >
+          {current > 0 && (
+          <Button
+            style={{
+              margin: '0 8px',
+            }}
+            onClick={() => prev()}
+          >
+            Previous
+          </Button>
+        )}
           {current < steps.length - 1 && (
             <Button type="primary" onClick={() => next()}>
               Next
@@ -124,16 +133,7 @@ export default function TourPage() {
               Done
             </Button>
           )}
-          {current > 0 && (
-            <Button
-              style={{
-                margin: '0 8px',
-              }}
-              onClick={() => prev()}
-            >
-              Previous
-            </Button>
-          )}
+
         </div>
       </div>
     </>

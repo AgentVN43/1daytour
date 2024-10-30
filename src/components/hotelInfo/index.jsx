@@ -16,7 +16,8 @@ import FormStandar from "./formStandar";
 import FormCustom from "./formCustom";
 const { Title, Text } = Typography;
 const { TabPane } = Tabs;
-export default function FoodInfo({ infoTraveler, setInfoTraveler }) {
+export default function HotelInfo({ infoTraveler, setInfoTraveler }) {
+  console.log("🚀 ~ FoodInfo ~ infoTraveler:", infoTraveler)
   const [nights, setNights] = useState(0);
   const [days, setDays] = useState("");
   const [data, setData] = useState([]);
@@ -47,7 +48,7 @@ export default function FoodInfo({ infoTraveler, setInfoTraveler }) {
     }
 
     const msInADay = 24 * 60 * 60 * 1000; // milliseconds in a day
-    const nights = Math.round((returnDate - departureDate) / msInADay / 2);
+    const nights = Math.round((returnDate - departureDate) / msInADay);
     setNights(nights); // Update the state with the calculated nights
   };
 
