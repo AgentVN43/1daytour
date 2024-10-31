@@ -1,17 +1,16 @@
-import React from 'react'
+import React from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import TourList from '../components/user/TourList'
-import TourBooking from '../components/user/TourBooking'
-import Dashboard from '../components/admin/Dashboard'
-import VehicleManagement from '../components/admin/VehicleManagement'
-import RouteManagement from '../components/admin/RouteManagement'
-import TourManagement from '../components/admin/TourManagement'
+import Dashboard from '../components/admin/Dashboard';
+import RouteManagement from '../components/admin/RouteManagement';
+import TourManagement from '../components/admin/TourManagement';
+import TourBooking from '../components/user/TourBooking';
 
+import ListVehicle from '../components/admin/ListVehicle';
+import OrderManagement from '../components/admin/OrderManagement';
 import HomePage from '../pages/HomePage';
 import TourPage from '../pages/TourPage';
-import OrderManagement from '../components/admin/OrderManagement';
-import ListVehicle from '../components/admin/ListVehicle';
+import ServiceManagement from '../components/admin/ServiceManagement';
 
 export default function MainRouter() {
     return (
@@ -27,6 +26,7 @@ export default function MainRouter() {
                         <Route path="vehicles" element={<ListVehicle />} />
                         <Route path="routes" element={<RouteManagement />} />
                         <Route path="tours" element={<TourManagement />} />
+                        <Route path="services" element={<ServiceManagement />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

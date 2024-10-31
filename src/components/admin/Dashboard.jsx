@@ -19,8 +19,10 @@ export default function Dashboard() {
       key: "1",
       label: "Vehicles",
       children: [
-        { key: "1-1", label: <Link to="/admin/vehicles">Manage Vehicles</Link> },
-        { key: "1-2", label: "Add New Vehicle" },
+        {
+          key: "1-1",
+          label: <Link to="/admin/vehicles">Manage Vehicles</Link>,
+        },
       ],
     },
     {
@@ -38,6 +40,11 @@ export default function Dashboard() {
         { key: "3-1", label: "Manage Tours" },
         { key: "3-2", label: "Add New Tour" },
       ],
+    },
+    {
+      key: "4",
+      label: "Services",
+      children: [{ key: "3-1", label:<Link to="/admin/services">Manage Services</Link> }],
     },
   ];
 
