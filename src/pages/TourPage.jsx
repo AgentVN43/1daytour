@@ -1,43 +1,41 @@
-import React, { useEffect, useState } from 'react'
-import { Button, message, Steps, theme } from 'antd';
-import FormInfo from '../components/formInfo'
+import React, { useEffect, useState } from "react";
+import { Button, message, Steps, theme } from "antd";
+import FormInfo from "../components/formInfo";
 
-import { provincesService } from '../services/provincesService'
-import BreadcrumbC from '../components/Breadcrumb';
-import FoodInfo from '../components/foodInfo';
-import TourSchedule from '../components/tourSchedule';
-import VehicleInfo from '../components/vehicleInfo';
-import MealsInfo from '../components/mealsInfo';
-import ServicesInfo from '../components/servicesInfo';
+import { provincesService } from "../services/provincesService";
+import BreadcrumbC from "../components/Breadcrumb";
+import HotelsInfo from "../components/hotelsInfo";
+import TourSchedule from "../components/tourSchedule";
+import VehicleInfo from "../components/vehicleInfo";
+import MealsInfo from "../components/mealsInfo";
+import ServicesInfo from "../components/servicesInfo";
 
 export default function TourPage() {
-  const [provinces, setProvinces] = useState([])
-  const [infoTraveler, setInfoTraveler] = useState(
-    {
-      tourId: "",
-      customerName: "",
-      departure: "",
-      destination: "",
-      departureDate: "",
-      returnDate: "",
-      passengers: {
-        adults: 0,
-        childrenUnder2: 0,
-        childrenUnder12: 0
-      },
-      assignedVehicle: null,
-      status: "NEW",
-      vehicleType: "",
-      specialRequirements: ""
-    }
-  )
-  console.log("🚀 ~ TourPage ~ infoTraveler:", infoTraveler)
+  const [provinces, setProvinces] = useState([]);
+  const [infoTraveler, setInfoTraveler] = useState({
+    tourId: "",
+    customerName: "",
+    departure: "",
+    destination: "",
+    departureDate: "",
+    returnDate: "",
+    passengers: {
+      adults: 0,
+      childrenUnder2: 0,
+      childrenUnder12: 0,
+    },
+    assignedVehicle: null,
+    status: "NEW",
+    vehicleType: "",
+    specialRequirements: "",
+  });
+  console.log("🚀 ~ TourPage ~ infoTraveler:", infoTraveler);
 
   const GetAllProvinces = async (e) => {
     try {
       const res = await provincesService.getAll();
       if (res && res.data) {
-        setProvinces(res.data.filter((item) => (item.isActive === true)))
+        setProvinces(res.data.filter((item) => item.isActive === true));
       }
     } catch (error) {
       console.error("Error creating provinces:", error);
@@ -48,39 +46,60 @@ export default function TourPage() {
   useEffect(() => {
     GetAllProvinces();
   }, []);
-  const breadcrumbItems = [
-    { title: 'tour' },
-  ];
+  const breadcrumbItems = [{ title: "tour" }];
 
   const steps = [
     {
-      title: 'Nhập thông tin',
-      content:
-        <FormInfo provinces={provinces} infoTraveler={infoTraveler} setInfoTraveler={setInfoTraveler} />
+      title: "Nhập thông tin",
+      content: (
+        <FormInfo
+          provinces={provinces}
+          infoTraveler={infoTraveler}
+          setInfoTraveler={setInfoTraveler}
+        />
+      ),
     },
     {
-      title: 'Thông tin phương tiện',
-      content: <VehicleInfo infoTraveler={infoTraveler} setInfoTraveler={setInfoTraveler} />,
-       
+      title: "Thông tin phương tiện",
+      content: (
+        <VehicleInfo
+          infoTraveler={infoTraveler}
+          setInfoTraveler={setInfoTraveler}
+        />
+      ),
     },
     {
-      title: 'Thông tin lưu trứu',
-      content: <FoodInfo infoTraveler={infoTraveler} setInfoTraveler={setInfoTraveler} />,
+      title: "Thông tin lưu trứu",
+      content: (
+        <HotelsInfo
+          infoTraveler={infoTraveler}
+          setInfoTraveler={setInfoTraveler}
+        />
+      ),
     },
     {
-      title: 'Thông tin bữa ăn',
-      content: <MealsInfo infoTraveler={infoTraveler} setInfoTraveler={setInfoTraveler} />,
+      title: "Thông tin bữa ăn",
+      content: (
+        <MealsInfo
+          infoTraveler={infoTraveler}
+          setInfoTraveler={setInfoTraveler}
+        />
+      ),
     },
     {
-      title: 'Thông tin dịch vụ',
-      content: <ServicesInfo infoTraveler={infoTraveler} setInfoTraveler={setInfoTraveler} />,
+      title: "Thông tin dịch vụ",
+      content: (
+        <ServicesInfo
+          infoTraveler={infoTraveler}
+          setInfoTraveler={setInfoTraveler}
+        />
+      ),
     },
     {
-      title: 'Lịch trình tham quan',
+      title: "Lịch trình tham quan",
       content: <TourSchedule />,
     },
   ];
-
 
   // steps
   const { token } = theme.useToken();
@@ -96,8 +115,8 @@ export default function TourPage() {
     title: item.title,
   }));
   const contentStyle = {
-    lineHeight: '260px',
-    textAlign: 'center',
+    lineHeight: "260px",
+    textAlign: "center",
     color: token.colorTextTertiary,
     backgroundColor: token.colorFillAlter,
     borderRadius: token.borderRadiusLG,
@@ -111,23 +130,24 @@ export default function TourPage() {
         {/* <div className='flex justify-center mt-20'> */}
         <Steps current={current} items={items} />
         <div style={contentStyle}>{steps[current].content}</div>
-        <div
-          className='my-5'
-        >
+        <div className="my-5">
           {current < steps.length - 1 && (
             <Button type="primary" onClick={() => next()}>
               Next
             </Button>
           )}
           {current === steps.length - 1 && (
-            <Button type="primary" onClick={() => message.success('Processing complete!')}>
+            <Button
+              type="primary"
+              onClick={() => message.success("Processing complete!")}
+            >
               Done
             </Button>
           )}
           {current > 0 && (
             <Button
               style={{
-                margin: '0 8px',
+                margin: "0 8px",
               }}
               onClick={() => prev()}
             >
@@ -137,5 +157,5 @@ export default function TourPage() {
         </div>
       </div>
     </>
-  )
+  );
 }

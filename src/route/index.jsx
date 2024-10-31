@@ -11,6 +11,7 @@ import TourManagement from '../components/admin/TourManagement'
 import HomePage from '../pages/HomePage';
 import TourPage from '../pages/TourPage';
 import OrderManagement from '../components/admin/OrderManagement';
+import ListVehicle from '../components/admin/ListVehicle';
 
 export default function MainRouter() {
     return (
@@ -23,7 +24,7 @@ export default function MainRouter() {
                     <Route path="order" element={<OrderManagement />} />
                     <Route path="admin" element={<Dashboard />}>
                         {/* Nested Routes inside Admin */}
-                        <Route path="vehicles" element={<VehicleManagement />} />
+                        <Route path="vehicles" element={<ListVehicle />} />
                         <Route path="routes" element={<RouteManagement />} />
                         <Route path="tours" element={<TourManagement />} />
                     </Route>

@@ -16,7 +16,7 @@ import FormStandar from "./formStandar";
 import FormCustom from "./formCustom";
 const { Title, Text } = Typography;
 const { TabPane } = Tabs;
-export default function FoodInfo({ infoTraveler, setInfoTraveler }) {
+export default function HotelsInfo({ infoTraveler, setInfoTraveler }) {
   const [nights, setNights] = useState(0);
   const [days, setDays] = useState("");
   const [data, setData] = useState([]);
