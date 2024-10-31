@@ -16,12 +16,12 @@ import FormStandar from "./formStandar";
 import FormCustom from "./formCustom";
 const { Title, Text } = Typography;
 const { TabPane } = Tabs;
-<<<<<<<< HEAD:src/components/hotelsInfo/index.jsx
-export default function HotelsInfo({ infoTraveler, setInfoTraveler }) {
-========
+// <<<<<<<< HEAD:src/components/hotelsInfo/index.jsx
+// export default function HotelsInfo({ infoTraveler, setInfoTraveler }) {
+// ========
 export default function HotelInfo({ infoTraveler, setInfoTraveler }) {
   console.log("🚀 ~ FoodInfo ~ infoTraveler:", infoTraveler)
->>>>>>>> 20351de89ff533e4d3d15a0b855f0e035493d36e:src/components/hotelInfo/index.jsx
+// >>>>>>>> 20351de89ff533e4d3d15a0b855f0e035493d36e:src/components/hotelInfo/index.jsx
   const [nights, setNights] = useState(0);
   const [days, setDays] = useState("");
   const [data, setData] = useState([]);

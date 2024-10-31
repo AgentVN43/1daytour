@@ -77,22 +77,6 @@ export default function TourPage() {
       ),
     },
     {
-      title: "Thông tin lưu trứu",
-      content: (
-        <HotelsInfo
-          infoTraveler={infoTraveler}
-          setInfoTraveler={setInfoTraveler}
-        />
-      ),
-      title: "Thông tin phương tiện",
-      content: (
-        <VehicleInfo
-          infoTraveler={infoTraveler}
-          setInfoTraveler={setInfoTraveler}
-        />
-      ),
-    },
-    {
       title: "Thông tin lưu trú",
       content: (
         <HotelInfo
