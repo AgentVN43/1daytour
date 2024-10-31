@@ -11,6 +11,7 @@ import OrderManagement from '../components/admin/OrderManagement';
 import HomePage from '../pages/HomePage';
 import TourPage from '../pages/TourPage';
 import ServiceManagement from '../components/admin/ServiceManagement';
+import PriceManagement from '../components/admin/PriceManagement';
 
 export default function MainRouter() {
     return (
@@ -27,6 +28,7 @@ export default function MainRouter() {
                         <Route path="routes" element={<RouteManagement />} />
                         <Route path="tours" element={<TourManagement />} />
                         <Route path="services" element={<ServiceManagement />} />
+                        <Route path="prices" element={<PriceManagement />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

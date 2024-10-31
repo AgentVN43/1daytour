@@ -46,6 +46,11 @@ export default function Dashboard() {
       label: "Services",
       children: [{ key: "3-1", label:<Link to="/admin/services">Manage Services</Link> }],
     },
+    {
+      key: "5",
+      label: "Prices",
+      children: [{ key: "3-1", label:<Link to="/admin/prices">Manage Prices</Link> }],
+    },
   ];
 
   return (

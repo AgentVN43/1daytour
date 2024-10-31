@@ -155,6 +155,11 @@ const Cart = ({ currentPrices, priceVersions }) => {
         const servicePrice = selectedPriceVersion.services.find(
           (s) => s["Dịch vụ"] === item.serviceName
         );
+        if (!servicePrice) {
+          // Nếu không tìm thấy giá dịch vụ, giữ nguyên giá cũ
+          console.warn(`Không tìm thấy giá cho dịch vụ: ${item.serviceName}`);
+          return item;
+        }
         return {
           ...item,
           price: servicePrice["Đơn giá"],
@@ -182,6 +187,29 @@ const Cart = ({ currentPrices, priceVersions }) => {
     setSelectedPriceVersion(null);
     checkoutForm.resetFields();
   };
+
+  const handlePriceVersionChange = (priceVersionId) => {
+    const selectedPriceVersion = priceVersions.find(
+      (version) => version.id === priceVersionId
+    );
+  
+    if (selectedPriceVersion) {
+      const updatedCart = cart.map((item) => {
+        const servicePrice = selectedPriceVersion.services.find(
+          (s) => s["Dịch vụ"] === item.serviceName
+        );
+        if (servicePrice) {
+          return {
+            ...item,
+            price: servicePrice["Đơn giá"],
+          };
+        }
+        return item;
+      });
+      setCart(updatedCart);
+    }
+  };
+
 
   return (
     <div style={{ padding: 24 }}>
@@ -262,7 +290,7 @@ const Cart = ({ currentPrices, priceVersions }) => {
               { required: true, message: "Vui lòng chọn bản giá áp dụng" },
             ]}
           >
-            <Select>
+            <Select onChange={handlePriceVersionChange}>
               <Option key="default" value="">
                 Chọn bản giá
               </Option>
