@@ -4,6 +4,7 @@ import { vehicleService } from "../../services/vehicleService";
 const { Title, Text } = Typography;
 
 export default function VehicleInfo({ infoTraveler, setInfoTraveler }) {
+  console.log("🚀 ~ VehicleInfo ~ infoTraveler:", infoTraveler)
   const [passengers, setPassengers] = useState("");
   const [vehicle, setVehicle] = useState([]);
   const [result, setResult] = useState(null);
