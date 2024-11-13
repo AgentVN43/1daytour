@@ -166,96 +166,186 @@ const TourQuotation = () => {
   );
 
   return (
-    <div className="p-6">
+    // <div className="w-full">
+    //   <Card>
+    //     <Title level={2}>Tour Quotation</Title>
+    //     <Tag color={tourData.status === "NEW" ? "blue" : "green"}>
+    //       {tourData.status}
+    //     </Tag>
+
+    //     <Row gutter={[24, 24]} className="mt-6">
+    //       <Col span={24}>
+    //         <Descriptions bordered>
+    //           <Descriptions.Item label="Tour ID">
+    //             {tourData.tourId}
+    //           </Descriptions.Item>
+    //           <Descriptions.Item label="Customer Name">
+    //             {tourData.customerName}
+    //           </Descriptions.Item>
+    //           <Descriptions.Item label="Passengers">
+    //             <UserOutlined /> {tourData.passengers} people
+    //           </Descriptions.Item>
+    //           <Descriptions.Item label="Departure">
+    //             {tourData.departure}
+    //           </Descriptions.Item>
+    //           <Descriptions.Item label="Destination">
+    //             {tourData.destination}
+    //           </Descriptions.Item>
+    //           <Descriptions.Item label="Duration">
+    //             <CalendarOutlined /> {tourData.departureDate} -{" "}
+    //             {tourData.returnDate}
+    //           </Descriptions.Item>
+    //         </Descriptions>
+    //       </Col>
+
+    //       <Col span={24}>
+    //         <Card title="Transportation" className="mt-4">
+    //           {tourData.vehicles.map((vehicle) => (
+    //             <div key={vehicle.vehicleId}>
+    //               <CarOutlined /> {vehicle.vehicleName} - {vehicle.seats} seats
+    //             </div>
+    //           ))}
+    //         </Card>
+    //       </Col>
+
+    //       <Col span={24}>
+    //         <Card title="Accommodation" className="mt-4">
+    //           {tourData.hotels.map((hotel, index) => (
+    //             <Descriptions key={index} bordered size="small">
+    //               <Descriptions.Item label="Room Type">
+    //                 {hotel.roomType}
+    //               </Descriptions.Item>
+    //               <Descriptions.Item label="Rooms">
+    //                 {hotel.roomCount}
+    //               </Descriptions.Item>
+    //               <Descriptions.Item label="Nights">
+    //                 {hotel.nights}
+    //               </Descriptions.Item>
+    //               <Descriptions.Item label="Check-in">
+    //                 {hotel.checkin}
+    //               </Descriptions.Item>
+    //               <Descriptions.Item label="Check-out">
+    //                 {hotel.checkout}
+    //               </Descriptions.Item>
+    //             </Descriptions>
+    //           ))}
+    //         </Card>
+    //       </Col>
+
+    //       <Col span={24}>
+    //         <Card title="Meals" className="mt-4">
+    //           <Table
+    //             columns={mealColumns}
+    //             dataSource={mealData}
+    //             pagination={false}
+    //             summary={() => (
+    //               <Table.Summary fixed>
+    //                 <Table.Summary.Row>
+    //                   <Table.Summary.Cell index={0} colSpan={5}>
+    //                     <Text strong>Total Meal Cost</Text>
+    //                   </Table.Summary.Cell>
+    //                   <Table.Summary.Cell index={1}>
+    //                     <Text strong>
+    //                       {calculateMealCosts().toLocaleString()} VND
+    //                     </Text>
+    //                   </Table.Summary.Cell>
+    //                 </Table.Summary.Row>
+    //               </Table.Summary>
+    //             )}
+    //           />
+    //         </Card>
+    //       </Col>
+    //     </Row>
+    //   </Card>
+    // </div>
+    <div className="w-full">
       <Card>
         <Title level={2}>Tour Quotation</Title>
         <Tag color={tourData.status === "NEW" ? "blue" : "green"}>
           {tourData.status}
         </Tag>
 
-        <Row gutter={[24, 24]} className="mt-6">
-          <Col span={24}>
-            <Descriptions bordered>
-              <Descriptions.Item label="Tour ID">
-                {tourData.tourId}
-              </Descriptions.Item>
-              <Descriptions.Item label="Customer Name">
-                {tourData.customerName}
-              </Descriptions.Item>
-              <Descriptions.Item label="Passengers">
-                <UserOutlined /> {tourData.passengers} people
-              </Descriptions.Item>
-              <Descriptions.Item label="Departure">
-                {tourData.departure}
-              </Descriptions.Item>
-              <Descriptions.Item label="Destination">
-                {tourData.destination}
-              </Descriptions.Item>
-              <Descriptions.Item label="Duration">
-                <CalendarOutlined /> {tourData.departureDate} -{" "}
-                {tourData.returnDate}
-              </Descriptions.Item>
-            </Descriptions>
-          </Col>
+        <div style={{ marginTop: '24px' }}>
+          <Descriptions bordered>
+            <Descriptions.Item label="Tour ID" span={3}>
+              {tourData.tourId}
+            </Descriptions.Item>
+            <Descriptions.Item label="Customer Name" span={3}>
+              {tourData.customerName}
+            </Descriptions.Item>
+            <Descriptions.Item label="Passengers" span={3}>
+              <UserOutlined /> {tourData.passengers} people
+            </Descriptions.Item>
+            <Descriptions.Item label="Departure" span={3}>
+              {tourData.departure}
+            </Descriptions.Item>
+            <Descriptions.Item label="Destination" span={3}>
+              {tourData.destination}
+            </Descriptions.Item>
+            <Descriptions.Item label="Duration" span={3}>
+              <CalendarOutlined /> {tourData.departureDate} -{" "}
+              {tourData.returnDate}
+            </Descriptions.Item>
+          </Descriptions>
+        </div>
 
-          <Col span={24}>
-            <Card title="Transportation" className="mt-4">
-              {tourData.vehicles.map((vehicle) => (
-                <div key={vehicle.vehicleId}>
-                  <CarOutlined /> {vehicle.vehicleName} - {vehicle.seats} seats
-                </div>
-              ))}
-            </Card>
-          </Col>
+        <div style={{ width: '25%', marginTop: '16px' }}>
+          <Card title="Transportation">
+            {tourData.vehicles.map((vehicle) => (
+              <div key={vehicle.vehicleId}>
+                <CarOutlined /> {vehicle.vehicleName} - {vehicle.seats} seats
+              </div>
+            ))}
+          </Card>
+        </div>
 
-          <Col span={24}>
-            <Card title="Accommodation" className="mt-4">
-              {tourData.hotels.map((hotel, index) => (
-                <Descriptions key={index} bordered size="small">
-                  <Descriptions.Item label="Room Type">
-                    {hotel.roomType}
-                  </Descriptions.Item>
-                  <Descriptions.Item label="Rooms">
-                    {hotel.roomCount}
-                  </Descriptions.Item>
-                  <Descriptions.Item label="Nights">
-                    {hotel.nights}
-                  </Descriptions.Item>
-                  <Descriptions.Item label="Check-in">
-                    {hotel.checkin}
-                  </Descriptions.Item>
-                  <Descriptions.Item label="Check-out">
-                    {hotel.checkout}
-                  </Descriptions.Item>
-                </Descriptions>
-              ))}
-            </Card>
-          </Col>
+        <div style={{ width: '25%', marginTop: '16px' }}>
+          <Card title="Accommodation">
+            {tourData.hotels.map((hotel, index) => (
+              <Descriptions key={index} bordered size="small">
+                <Descriptions.Item label="Room Type">
+                  {hotel.roomType}
+                </Descriptions.Item>
+                <Descriptions.Item label="Rooms">
+                  {hotel.roomCount}
+                </Descriptions.Item>
+                <Descriptions.Item label="Nights">
+                  {hotel.nights}
+                </Descriptions.Item>
+                <Descriptions.Item label="Check-in">
+                  {hotel.checkin}
+                </Descriptions.Item>
+                <Descriptions.Item label="Check-out">
+                  {hotel.checkout}
+                </Descriptions.Item>
+              </Descriptions>
+            ))}
+          </Card>
+        </div>
 
-          <Col span={24}>
-            <Card title="Meals" className="mt-4">
-              <Table
-                columns={mealColumns}
-                dataSource={mealData}
-                pagination={false}
-                summary={() => (
-                  <Table.Summary fixed>
-                    <Table.Summary.Row>
-                      <Table.Summary.Cell index={0} colSpan={5}>
-                        <Text strong>Total Meal Cost</Text>
-                      </Table.Summary.Cell>
-                      <Table.Summary.Cell index={1}>
-                        <Text strong>
-                          {calculateMealCosts().toLocaleString()} VND
-                        </Text>
-                      </Table.Summary.Cell>
-                    </Table.Summary.Row>
-                  </Table.Summary>
-                )}
-              />
-            </Card>
-          </Col>
-        </Row>
+        <div style={{ width: '25%', marginTop: '16px' }}>
+          <Card title="Meals">
+            <Table
+              columns={mealColumns}
+              dataSource={mealData}
+              pagination={false}
+              summary={() => (
+                <Table.Summary fixed>
+                  <Table.Summary.Row>
+                    <Table.Summary.Cell index={0} colSpan={5}>
+                      <Text strong>Total Meal Cost</Text>
+                    </Table.Summary.Cell>
+                    <Table.Summary.Cell index={1}>
+                      <Text strong>
+                        {calculateMealCosts().toLocaleString()} VND
+                      </Text>
+                    </Table.Summary.Cell>
+                  </Table.Summary.Row>
+                </Table.Summary>
+              )}
+            />
+          </Card>
+        </div>
       </Card>
     </div>
   );

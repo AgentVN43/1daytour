@@ -13,7 +13,6 @@ import FormInfo from "../components/formInfo";
 import { provincesService } from "../services/provincesService";
 import BreadcrumbC from "../components/Breadcrumb";
 import HotelInfo from "../components/hotelInfo";
-import TourSchedule from "../components/tourSchedule";
 import VehicleInfo from "../components/vehicleInfo";
 import MealsInfo from "../components/mealsInfo";
 import ServicesInfo from "../components/servicesInfo";
@@ -134,53 +133,59 @@ export default function TourPage() {
   };
   return (
     <>
-      <div className="left">
-        <BreadcrumbC items={breadcrumbItems} />
-        <div className="max-w-7xl mx-auto px-4">
-          {/* <div className='flex justify-center mt-20'> */}
-          <Steps current={current} items={items} />
-          <div style={contentStyle}>{steps[current].content}</div>
-          <div className="my-5">
+
+      <BreadcrumbC items={breadcrumbItems} />
+      <div className="flex space-x-4">
+        <div className="w-3/4">
+          <div className="max-w-7xl mx-auto px-4">
+            {/* <div className='flex justify-center mt-20'> */}
+            <Steps current={current} items={items} />
+            <div style={contentStyle}>{steps[current].content}</div>
             <div className="my-5">
-              {current > 0 && (
-                <Button
-                  style={{
-                    margin: "0 8px",
-                  }}
-                  onClick={() => prev()}
-                >
-                  Previous
-                </Button>
-              )}
-              {current < steps.length - 1 && (
-                <Button type="primary" onClick={() => next()}>
-                  Next
-                </Button>
-              )}
-              {current === steps.length - 1 && (
-                <Button
-                  type="primary"
-                  onClick={() => message.success("Processing complete!")}
-                >
-                  Done
-                </Button>
-              )}
-              {current > 0 && (
-                <Button
-                  style={{
-                    margin: "0 8px",
-                  }}
-                  onClick={() => prev()}
-                >
-                  Previous
-                </Button>
-              )}
+              <div className="my-5">
+                {current > 0 && (
+                  <Button
+                    style={{
+                      margin: "0 8px",
+                    }}
+                    onClick={() => prev()}
+                  >
+                    Previous
+                  </Button>
+                )}
+                {current < steps.length - 1 && (
+                  <Button type="primary" onClick={() => next()}>
+                    Next
+                  </Button>
+                )}
+                {current === steps.length - 1 && (
+                  <Button
+                    type="primary"
+                    onClick={() => message.success("Processing complete!")}
+                  >
+                    Done
+                  </Button>
+                )}
+                {current > 0 && (
+                  <Button
+                    style={{
+                      margin: "0 8px",
+                    }}
+                    onClick={() => prev()}
+                  >
+                    Previous
+                  </Button>
+                )}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className="right">
-        <p>test</p>
+        <div className="w-1/4">
+          <div className="w-full px-3 py-2 border rounded-xl">
+            <h2 className="font-semibold text-lg">Thông tin đơn hàng</h2>
+            <TourQuotation />
+          </div>
+        </div>
       </div>
     </>
   );
