@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Table, Typography, Row, Col, Descriptions, Tag } from "antd";
+import { Card, Table, Typography, Row, Col, Descriptions, Tag, Divider, List } from "antd";
 import { CalendarOutlined, UserOutlined, CarOutlined } from "@ant-design/icons";
 
 const { Title, Text } = Typography;
@@ -258,96 +258,114 @@ const TourQuotation = () => {
     //     </Row>
     //   </Card>
     // </div>
-    <div className="w-full">
-      <Card>
-        <Title level={2}>Tour Quotation</Title>
-        <Tag color={tourData.status === "NEW" ? "blue" : "green"}>
-          {tourData.status}
-        </Tag>
+    <>
+      <Card title={`Tour ID: ${tourData.tourId}`} bordered={false}>
+        <Descriptions column={1} layout="vertical">
+          <Descriptions.Item label="Customer Name">
+            {tourData.customerName}
+          </Descriptions.Item>
+          <Descriptions.Item label="Departure">
+            {tourData.departure}
+          </Descriptions.Item>
+          <Descriptions.Item label="Destination">
+            {tourData.destination}
+          </Descriptions.Item>
+          <Descriptions.Item label="Departure Date">
+            {tourData.departureDate}
+          </Descriptions.Item>
+          <Descriptions.Item label="Return Date">
+            {tourData.returnDate}
+          </Descriptions.Item>
+          <Descriptions.Item label="Passengers">
+            {tourData.passengers}
+          </Descriptions.Item>
+          <Descriptions.Item label="Status">
+            {tourData.status}
+          </Descriptions.Item>
+        </Descriptions>
 
-        <div style={{ marginTop: '24px' }}>
-          <Descriptions bordered>
-            <Descriptions.Item label="Tour ID" span={3}>
-              {tourData.tourId}
-            </Descriptions.Item>
-            <Descriptions.Item label="Customer Name" span={3}>
-              {tourData.customerName}
-            </Descriptions.Item>
-            <Descriptions.Item label="Passengers" span={3}>
-              <UserOutlined /> {tourData.passengers} people
-            </Descriptions.Item>
-            <Descriptions.Item label="Departure" span={3}>
-              {tourData.departure}
-            </Descriptions.Item>
-            <Descriptions.Item label="Destination" span={3}>
-              {tourData.destination}
-            </Descriptions.Item>
-            <Descriptions.Item label="Duration" span={3}>
-              <CalendarOutlined /> {tourData.departureDate} -{" "}
-              {tourData.returnDate}
-            </Descriptions.Item>
-          </Descriptions>
-        </div>
+        <Divider>Meals</Divider>
+        <List
+          dataSource={tourData.meals}
+          renderItem={(meal) => (
+            <Card title={`Date: ${meal.date}`} bordered={false} size="small">
+              {meal.sessions.map((session) => (
+                <Descriptions
+                  key={session.key}
+                  column={1}
+                  layout="vertical"
+                  size="small"
+                >
+                  <Descriptions.Item label="Session">
+                    {session.session}
+                  </Descriptions.Item>
+                  <Descriptions.Item label="Restaurant">
+                    {session.restaurant}
+                  </Descriptions.Item>
+                  <Descriptions.Item label="Portion Count">
+                    {session.portionCount}
+                  </Descriptions.Item>
+                  <Descriptions.Item label="Price per Portion">
+                    {session.pricePerPortion}
+                  </Descriptions.Item>
+                </Descriptions>
+              ))}
+            </Card>
+          )}
+        />
 
-        <div style={{ width: '25%', marginTop: '16px' }}>
-          <Card title="Transportation">
-            {tourData.vehicles.map((vehicle) => (
-              <div key={vehicle.vehicleId}>
-                <CarOutlined /> {vehicle.vehicleName} - {vehicle.seats} seats
-              </div>
-            ))}
-          </Card>
-        </div>
+        <Divider>Hotels</Divider>
+        <List
+          dataSource={tourData.hotels}
+          renderItem={(hotel) => (
+            <Descriptions column={1} layout="vertical" size="small" bordered>
+              <Descriptions.Item label="Nights">
+                {hotel.nights}
+              </Descriptions.Item>
+              <Descriptions.Item label="Room Type">
+                {hotel.roomType}
+              </Descriptions.Item>
+              <Descriptions.Item label="Room Count">
+                {hotel.roomCount}
+              </Descriptions.Item>
+              <Descriptions.Item label="Check-in">
+                {hotel.checkin}
+              </Descriptions.Item>
+              <Descriptions.Item label="Check-out">
+                {hotel.checkout}
+              </Descriptions.Item>
+              <Descriptions.Item label="Total Passengers">
+                {hotel.totalPassengers}
+              </Descriptions.Item>
+            </Descriptions>
+          )}
+        />
 
-        <div style={{ width: '25%', marginTop: '16px' }}>
-          <Card title="Accommodation">
-            {tourData.hotels.map((hotel, index) => (
-              <Descriptions key={index} bordered size="small">
-                <Descriptions.Item label="Room Type">
-                  {hotel.roomType}
-                </Descriptions.Item>
-                <Descriptions.Item label="Rooms">
-                  {hotel.roomCount}
-                </Descriptions.Item>
-                <Descriptions.Item label="Nights">
-                  {hotel.nights}
-                </Descriptions.Item>
-                <Descriptions.Item label="Check-in">
-                  {hotel.checkin}
-                </Descriptions.Item>
-                <Descriptions.Item label="Check-out">
-                  {hotel.checkout}
-                </Descriptions.Item>
-              </Descriptions>
-            ))}
-          </Card>
-        </div>
-
-        <div style={{ width: '25%', marginTop: '16px' }}>
-          <Card title="Meals">
-            <Table
-              columns={mealColumns}
-              dataSource={mealData}
-              pagination={false}
-              summary={() => (
-                <Table.Summary fixed>
-                  <Table.Summary.Row>
-                    <Table.Summary.Cell index={0} colSpan={5}>
-                      <Text strong>Total Meal Cost</Text>
-                    </Table.Summary.Cell>
-                    <Table.Summary.Cell index={1}>
-                      <Text strong>
-                        {calculateMealCosts().toLocaleString()} VND
-                      </Text>
-                    </Table.Summary.Cell>
-                  </Table.Summary.Row>
-                </Table.Summary>
-              )}
-            />
-          </Card>
-        </div>
+        <Divider>Vehicles</Divider>
+        <List
+          dataSource={tourData.vehicles}
+          renderItem={(vehicle) => (
+            <Descriptions column={1} layout="vertical" size="small" bordered>
+              <Descriptions.Item label="Vehicle Name">
+                {vehicle.vehicleName}
+              </Descriptions.Item>
+              <Descriptions.Item label="Quantity">
+                {vehicle.quantity}
+              </Descriptions.Item>
+              <Descriptions.Item label="Seats">
+                {vehicle.seats}
+              </Descriptions.Item>
+              <Descriptions.Item label="Type">
+                {vehicle.type.type}
+              </Descriptions.Item>
+              <Descriptions.Item label="Type Code">
+                {vehicle.type.code}
+              </Descriptions.Item>
+            </Descriptions>
+          )}
+        />
       </Card>
-    </div>
+    </>
   );
 };
 
