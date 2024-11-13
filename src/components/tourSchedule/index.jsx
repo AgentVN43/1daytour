@@ -1,5 +1,15 @@
 import React from "react";
-import { Card, Table, Typography, Row, Col, Descriptions, Tag, Divider, List } from "antd";
+import {
+  Card,
+  Table,
+  Typography,
+  Row,
+  Col,
+  Descriptions,
+  Tag,
+  Divider,
+  List,
+} from "antd";
 import { CalendarOutlined, UserOutlined, CarOutlined } from "@ant-design/icons";
 
 const { Title, Text } = Typography;
@@ -259,7 +269,7 @@ const TourQuotation = () => {
     //   </Card>
     // </div>
     <>
-      <Card title={`Tour ID: ${tourData.tourId}`} bordered={false}>
+      {/* <Card title={`Tour ID: ${tourData.tourId}`} bordered={false}>
         <Descriptions column={1} layout="vertical">
           <Descriptions.Item label="Customer Name">
             {tourData.customerName}
@@ -346,6 +356,112 @@ const TourQuotation = () => {
           dataSource={tourData.vehicles}
           renderItem={(vehicle) => (
             <Descriptions column={1} layout="vertical" size="small" bordered>
+              <Descriptions.Item label="Vehicle Name">
+                {vehicle.vehicleName}
+              </Descriptions.Item>
+              <Descriptions.Item label="Quantity">
+                {vehicle.quantity}
+              </Descriptions.Item>
+              <Descriptions.Item label="Seats">
+                {vehicle.seats}
+              </Descriptions.Item>
+              <Descriptions.Item label="Type">
+                {vehicle.type.type}
+              </Descriptions.Item>
+              <Descriptions.Item label="Type Code">
+                {vehicle.type.code}
+              </Descriptions.Item>
+            </Descriptions>
+          )}
+        />
+      </Card> */}
+      <Card title={`Tour ID: ${tourData.tourId}`} bordered={false}>
+        {/* Displaying Tour Details */}
+        <Descriptions layout="horizontal" column={1}>
+          <Descriptions.Item label="Customer Name">
+            {tourData.customerName}
+          </Descriptions.Item>
+          <Descriptions.Item label="Departure">
+            {tourData.departure}
+          </Descriptions.Item>
+          <Descriptions.Item label="Destination">
+            {tourData.destination}
+          </Descriptions.Item>
+          <Descriptions.Item label="Departure Date">
+            {tourData.departureDate}
+          </Descriptions.Item>
+          <Descriptions.Item label="Return Date">
+            {tourData.returnDate}
+          </Descriptions.Item>
+          <Descriptions.Item label="Passengers">
+            {tourData.passengers}
+          </Descriptions.Item>
+          <Descriptions.Item label="Status">
+            {tourData.status}
+          </Descriptions.Item>
+        </Descriptions>
+
+        <Divider>Meals</Divider>
+        {/* Meals Section */}
+        <List
+          dataSource={tourData.meals}
+          renderItem={(meal) => (
+            <Card title={`Date: ${meal.date}`} bordered={false} size="small">
+              {meal.sessions.map((session) => (
+                <Row gutter={[16, 8]} key={session.key}>
+                  <Col span={12}>
+                    <Text strong>Session:</Text> {session.session}
+                  </Col>
+                  <Col span={12}>
+                    <Text strong>Restaurant:</Text> {session.restaurant}
+                  </Col>
+                  <Col span={12}>
+                    <Text strong>Portion Count:</Text> {session.portionCount}
+                  </Col>
+                  <Col span={12}>
+                    <Text strong>Price per Portion:</Text>{" "}
+                    {session.pricePerPortion}
+                  </Col>
+                </Row>
+              ))}
+            </Card>
+          )}
+        />
+
+        <Divider>Hotels</Divider>
+        {/* Hotels Section */}
+        <List
+          dataSource={tourData.hotels}
+          renderItem={(hotel) => (
+            <Descriptions layout="horizontal" column={1} size="small" bordered>
+              <Descriptions.Item label="Nights">
+                {hotel.nights}
+              </Descriptions.Item>
+              <Descriptions.Item label="Room Type">
+                {hotel.roomType}
+              </Descriptions.Item>
+              <Descriptions.Item label="Room Count">
+                {hotel.roomCount}
+              </Descriptions.Item>
+              <Descriptions.Item label="Check-in">
+                {hotel.checkin}
+              </Descriptions.Item>
+              <Descriptions.Item label="Check-out">
+                {hotel.checkout}
+              </Descriptions.Item>
+              <Descriptions.Item label="Total Passengers">
+                {hotel.totalPassengers}
+              </Descriptions.Item>
+            </Descriptions>
+          )}
+        />
+
+        <Divider>Vehicles</Divider>
+        {/* Vehicles Section */}
+        <List
+          dataSource={tourData.vehicles}
+          renderItem={(vehicle) => (
+            <Descriptions layout="horizontal" column={1} size="small" bordered>
               <Descriptions.Item label="Vehicle Name">
                 {vehicle.vehicleName}
               </Descriptions.Item>
