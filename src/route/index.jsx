@@ -17,6 +17,7 @@ import PackageList from "../components/packages/PackageList";
 import OrderList from "../components/orders/OrderList";
 import OrderForm from "../components/orders/OrderForm";
 import OrderSteps from "../components/orders/OrderSteps";
+import Quotation from "../pages/Quotation";
 
 export default function MainRouter() {
   return (
@@ -27,6 +28,7 @@ export default function MainRouter() {
           <Route path="/tour" element={<TourPage />} />
           <Route path="book/:tourId" element={<TourBooking />} />
           <Route path="order" element={<OrderManagement />} />
+          <Route path="quotation" element={<Quotation />} />
           <Route path="admin" element={<Dashboard />}>
             {/* Nested Routes inside Admin */}
             <Route path="vehicles" element={<ListVehicle />} />

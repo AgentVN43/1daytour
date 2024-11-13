@@ -17,9 +17,11 @@ import VehicleInfo from "../components/vehicleInfo";
 import MealsInfo from "../components/mealsInfo";
 import ServicesInfo from "../components/servicesInfo";
 import TourQuotation from "../components/tourSchedule";
+import { useNavigate } from "react-router-dom";
 
 export default function TourPage() {
   const [provinces, setProvinces] = useState([]);
+  const navigate = useNavigate()
   const [infoTraveler, setInfoTraveler] = useState({
     tourId: "",
     customerName: "",
@@ -136,7 +138,7 @@ export default function TourPage() {
 
       <BreadcrumbC items={breadcrumbItems} />
       <div className="flex space-x-4">
-        <div className="w-3/4">
+        <div className="w-3/5">
           <div className="max-w-7xl mx-auto px-4">
             {/* <div className='flex justify-center mt-20'> */}
             <Steps current={current} items={items} />
@@ -180,10 +182,13 @@ export default function TourPage() {
             </div>
           </div>
         </div>
-        <div className="w-1/4">
-          <div className="w-full px-3 py-2 border rounded-xl">
+        <div className="w-2/5">
+          <div className="px-3 py-2 border rounded-xl">
             <h2 className="font-semibold text-lg">Thông tin đơn hàng</h2>
             <TourQuotation />
+            <div className="flex justify-center items-center mt-3">
+              <Button onClick={() => navigate('/quotation')}>Create Quotation</Button>
+            </div>
           </div>
         </div>
       </div>

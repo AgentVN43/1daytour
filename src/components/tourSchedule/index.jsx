@@ -12,6 +12,8 @@ import {
 } from "antd";
 import { CalendarOutlined, UserOutlined, CarOutlined } from "@ant-design/icons";
 
+import './TourSchedule.css'
+
 const { Title, Text } = Typography;
 
 const TourQuotation = () => {
@@ -35,21 +37,21 @@ const TourQuotation = () => {
             session: "Sáng",
             restaurant: "A",
             portionCount: 8,
-            pricePerPortion: 130000,
+            pricePerPortion: 0,
           },
           {
             key: "0-1",
             session: "Trưa",
             restaurant: "B",
             portionCount: 8,
-            pricePerPortion: 150000,
+            pricePerPortion: 0,
           },
           {
             key: "0-2",
             session: "Tối",
             restaurant: "C",
             portionCount: 8,
-            pricePerPortion: 250000,
+            pricePerPortion: 0,
           },
         ],
       },
@@ -62,21 +64,21 @@ const TourQuotation = () => {
             session: "Sáng",
             restaurant: "X",
             portionCount: 8,
-            pricePerPortion: 130000,
+            pricePerPortion: 0,
           },
           {
             key: "1-1",
             session: "Trưa",
             restaurant: "YZ",
             portionCount: 8,
-            pricePerPortion: 130000,
+            pricePerPortion: 0,
           },
           {
             key: "1-2",
             session: "Tối",
             restaurant: "Z",
             portionCount: 8,
-            pricePerPortion: 130000,
+            pricePerPortion: 0,
           },
         ],
       },
@@ -89,7 +91,7 @@ const TourQuotation = () => {
             session: "Sáng",
             restaurant: "A",
             portionCount: 8,
-            pricePerPortion: 130000,
+            pricePerPortion: 0,
           },
         ],
       },
@@ -375,7 +377,7 @@ const TourQuotation = () => {
           )}
         />
       </Card> */}
-      <Card title={`Tour ID: ${tourData.tourId}`} bordered={false}>
+      <Card className="order h-[100vh] modal-body overflow-y-auto" title={`Tour ID: ${tourData.tourId}`} bordered={false}>
         {/* Displaying Tour Details */}
         <Descriptions layout="horizontal" column={1}>
           <Descriptions.Item label="Customer Name">
