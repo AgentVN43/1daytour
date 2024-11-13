@@ -3,6 +3,9 @@ import { Layout, Menu, Drawer, Button } from "antd";
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
 import { Link, Outlet } from "react-router-dom";
 import "tailwindcss/tailwind.css"; // Ensure Tailwind is installed and configured
+import { ServiceProvider } from "../../contexts/ServiceContext";
+import { PackageProvider } from "../../contexts/PackageContext";
+import { OrderProvider } from "../../contexts/OrderContext";
 
 const { Header, Sider, Content } = Layout;
 
@@ -44,75 +47,105 @@ export default function Dashboard() {
     {
       key: "4",
       label: "Services",
-      children: [{ key: "3-1", label:<Link to="/admin/services">Manage Services</Link> }],
+      children: [
+        {
+          key: "3-1",
+          label: <Link to="/admin/services">Manage Services</Link>,
+        },
+      ],
     },
     {
       key: "5",
       label: "Prices",
-      children: [{ key: "3-1", label:<Link to="/admin/prices">Manage Prices</Link> }],
+      children: [
+        { key: "3-1", label: <Link to="/admin/prices">Manage Prices</Link> },
+      ],
+    },
+    {
+      key: "6",
+      label: "Services New",
+      children: [
+        {
+          key: "3-1",
+          label: <Link to="/admin/servicesnew">Manage Prices</Link>,
+        },
+        {
+          key: "3-2",
+          label: <Link to="/admin/packet">Manage Packet</Link>,
+        },
+        {
+          key: "3-3",
+          label: <Link to="/admin/order">New Order</Link>,
+        },
+        {
+          key: "3-4",
+          label: <Link to="/admin/listorder">List Order</Link>,
+        },
+      ],
     },
   ];
 
   return (
-    <Layout className="min-h-screen">
-      {/* Sidebar for desktop view */}
-      <Sider
-        collapsible
-        collapsed={collapsed}
-        onCollapse={toggleCollapse}
-        breakpoint="lg"
-        collapsedWidth="0"
-        trigger={null}
-        className="hidden lg:block"
-      >
-        <div className="p-4 text-white text-center">Admin Dashboard</div>
-        <Menu theme="dark" mode="inline" items={menuItems} />
-      </Sider>
+    <ServiceProvider>
+      <PackageProvider>
+        <OrderProvider>
+          <Layout className="min-h-screen">
+            {/* Sidebar for desktop view */}
+            <Sider
+              collapsible
+              collapsed={collapsed}
+              onCollapse={toggleCollapse}
+              breakpoint="lg"
+              collapsedWidth="0"
+              trigger={null}
+              className="hidden lg:block"
+            >
+              <div className="p-4 text-white text-center">Admin Dashboard</div>
+              <Menu theme="dark" mode="inline" items={menuItems} />
+            </Sider>
 
-      {/* Drawer for mobile view */}
-      <Drawer
-        title="Admin Dashboard"
-        placement="left"
-        onClose={hideDrawer}
-        visible={drawerVisible}
-        className="lg:hidden"
-        bodyStyle={{ padding: 0 }}
-      >
-        <Menu theme="dark" mode="inline" items={menuItems} />
-      </Drawer>
+            {/* Drawer for mobile view */}
+            <Drawer
+              title="Admin Dashboard"
+              placement="left"
+              onClose={hideDrawer}
+              visible={drawerVisible}
+              className="lg:hidden"
+              bodyStyle={{ padding: 0 }}
+            >
+              <Menu theme="dark" mode="inline" items={menuItems} />
+            </Drawer>
 
-      <Layout>
-        {/* Header */}
-        <Header className="flex justify-between items-center px-4 bg-white shadow-md">
-          <Button
-            type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={showDrawer}
-            className="lg:hidden"
-          />
-          <h2 className="text-lg font-semibold">Dashboard Header</h2>
-          <Button
-            type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={toggleCollapse}
-            className="hidden lg:inline"
-          />
-        </Header>
+            <Layout>
+              {/* Header */}
+              <Header className="flex justify-between items-center px-4 bg-white shadow-md">
+                <Button
+                  type="text"
+                  icon={
+                    collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />
+                  }
+                  onClick={showDrawer}
+                  className="lg:hidden"
+                />
+                <h2 className="text-lg font-semibold">Dashboard Header</h2>
+                <Button
+                  type="text"
+                  icon={
+                    collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />
+                  }
+                  onClick={toggleCollapse}
+                  className="hidden lg:inline"
+                />
+              </Header>
 
-        {/* Content */}
-        <Content className="p-4">
-          <Outlet />
-        </Content>
-      </Layout>
-    </Layout>
+              {/* Content */}
+              <Content className="p-4">
+                <Outlet />
+              </Content>
+            </Layout>
+          </Layout>
+        </OrderProvider>
+      </PackageProvider>
+    </ServiceProvider>
   );
 }
-// import React from 'react'
-
-// export default function Dashboard() {
-//   return (
-//     <div>
-//       Dashboard
-//     </div>
-//   )
-// }

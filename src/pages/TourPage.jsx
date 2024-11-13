@@ -10,13 +10,14 @@ import FormInfo from "../components/formInfo";
 // import MealsInfo from "../components/mealsInfo";
 // import ServicesInfo from "../components/servicesInfo";
 
-import { provincesService } from '../services/provincesService'
-import BreadcrumbC from '../components/Breadcrumb';
-import HotelInfo from '../components/hotelInfo';
-import TourSchedule from '../components/tourSchedule';
-import VehicleInfo from '../components/vehicleInfo';
-import MealsInfo from '../components/mealsInfo';
-import ServicesInfo from '../components/servicesInfo';
+import { provincesService } from "../services/provincesService";
+import BreadcrumbC from "../components/Breadcrumb";
+import HotelInfo from "../components/hotelInfo";
+import TourSchedule from "../components/tourSchedule";
+import VehicleInfo from "../components/vehicleInfo";
+import MealsInfo from "../components/mealsInfo";
+import ServicesInfo from "../components/servicesInfo";
+import TourQuotation from "../components/tourSchedule";
 
 export default function TourPage() {
   const [provinces, setProvinces] = useState([]);
@@ -68,7 +69,7 @@ export default function TourPage() {
       ),
     },
     {
-      title: "Thông tin phương tiện",
+      title: "Di chuyển",
       content: (
         <VehicleInfo
           infoTraveler={infoTraveler}
@@ -77,7 +78,7 @@ export default function TourPage() {
       ),
     },
     {
-      title: "Thông tin lưu trú",
+      title: "Lưu trú",
       content: (
         <HotelInfo
           infoTraveler={infoTraveler}
@@ -86,7 +87,7 @@ export default function TourPage() {
       ),
     },
     {
-      title: "Thông tin bữa ăn",
+      title: "Ăn uống",
       content: (
         <MealsInfo
           infoTraveler={infoTraveler}
@@ -104,8 +105,8 @@ export default function TourPage() {
       ),
     },
     {
-      title: "Lịch trình tham quan",
-      content: <TourSchedule />,
+      title: "Báo giá",
+      content: <TourQuotation />,
     },
   ];
 
@@ -133,52 +134,54 @@ export default function TourPage() {
   };
   return (
     <>
-    <BreadcrumbC items={breadcrumbItems} />
-    <div className="max-w-7xl mx-auto px-4">
-      {/* <div className='flex justify-center mt-20'> */}
-      <Steps current={current} items={items} />
-      <div style={contentStyle}>{steps[current].content}</div>
-      <div className="my-5">
-      <div
-        className='my-5'
-      >
-        {current > 0 && (
-        <Button
-          style={{
-            margin: '0 8px',
-          }}
-          onClick={() => prev()}
-        >
-          Previous
-        </Button>
-      )}
-        {current < steps.length - 1 && (
-          <Button type="primary" onClick={() => next()}>
-            Next
-          </Button>
-        )}
-        {current === steps.length - 1 && (
-          <Button
-            type="primary"
-            onClick={() => message.success("Processing complete!")}
-          >
-            Done
-          </Button>
-        )}
-        {current > 0 && (
-          <Button
-            style={{
-              margin: "0 8px",
-            }}
-            onClick={() => prev()}
-          >
-            Previous
-          </Button>
-        )}
-
+      <div className="left">
+        <BreadcrumbC items={breadcrumbItems} />
+        <div className="max-w-7xl mx-auto px-4">
+          {/* <div className='flex justify-center mt-20'> */}
+          <Steps current={current} items={items} />
+          <div style={contentStyle}>{steps[current].content}</div>
+          <div className="my-5">
+            <div className="my-5">
+              {current > 0 && (
+                <Button
+                  style={{
+                    margin: "0 8px",
+                  }}
+                  onClick={() => prev()}
+                >
+                  Previous
+                </Button>
+              )}
+              {current < steps.length - 1 && (
+                <Button type="primary" onClick={() => next()}>
+                  Next
+                </Button>
+              )}
+              {current === steps.length - 1 && (
+                <Button
+                  type="primary"
+                  onClick={() => message.success("Processing complete!")}
+                >
+                  Done
+                </Button>
+              )}
+              {current > 0 && (
+                <Button
+                  style={{
+                    margin: "0 8px",
+                  }}
+                  onClick={() => prev()}
+                >
+                  Previous
+                </Button>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
+      <div className="right">
+        <p>test</p>
       </div>
-    </div>
-  </>
-  )
+    </>
+  );
 }
